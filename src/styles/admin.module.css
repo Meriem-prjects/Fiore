@@ -1,18 +1,40 @@
 .adminContainer {
-    display: grid;
-    grid-template-columns: 250px 1fr;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
-    gap: 1px;
-    background-color: var(--border);
+    background-color: var(--background);
+}
+
+.adminHeaderTop {
+    height: 64px;
+    background-color: #1a202c;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    justify-content: space-between;
+    z-index: 100;
+}
+
+.adminContentArea {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
 }
 
 .adminSidebar {
-    background-color: var(--secondary);
+    background-color: #1e293b;
+    width: 260px;
     display: flex;
     flex-direction: column;
-    padding: 2rem 1rem;
-    gap: 3rem;
+    padding: 1.5rem 0;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
     border-right: 1px solid var(--border);
+}
+
+.adminSidebar.collapsed {
+    width: 80px;
 }
 
 .adminLogo {
@@ -28,39 +50,76 @@
     gap: 1rem;
 }
 
-.navLink {
+.sidebarLabel {
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.collapsed .sidebarLabel {
+    opacity: 0;
+    width: 0;
+    pointer-events: none;
+}
+
+.topNavItems {
     display: flex;
+    gap: 0.5rem;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 12px;
+}
+
+.topNavItem {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
     color: #94a3b8;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    transition: all 0.2s;
 }
 
-.navLink:hover {
-    background-color: rgba(255, 255, 255, 0.03);
+.topNavItem:hover,
+.topNavItemActive {
+    background-color: rgba(255, 255, 255, 0.1);
     color: white;
 }
 
-.backToPos {
-    margin-top: auto;
+.sidebarToggle {
+    position: absolute;
+    right: -12px;
+    top: 24px;
+    width: 24px;
+    height: 24px;
+    background: var(--primary);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    border-radius: 12px;
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.2s ease;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    z-index: 10;
+    border: 2px solid var(--background);
 }
 
-.backToPos:hover {
-    background-color: rgba(245, 158, 11, 0.1);
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    gap: 1rem;
+    color: #94a3b8;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.navLink:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.navLinkActive {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--primary);
+    border-right: 3px solid var(--primary);
 }
 
 .adminMain {
